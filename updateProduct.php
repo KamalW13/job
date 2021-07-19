@@ -4,7 +4,6 @@ include 'functions.php';
 
 $id = $_GET['id'];
 $data = fetchData("SELECT * FROM product WHERE id = $id")[0];
-var_dump($data['desc']);
 
 $categories = fetchData("SELECT * FROM categories");
 
