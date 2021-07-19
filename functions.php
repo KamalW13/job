@@ -56,7 +56,7 @@ function addCategorie($data){
 // Check Upload File
 function checkingUpload($files){
 	// ================
-	$file = $files;
+	$file = $_FILES[$files];
 
 	$nameFile = $file['name'];
 	$tmpName = $file['tmp_name']; // location file
@@ -126,7 +126,7 @@ function updateProduct($data, $gambarLama){
     $gambarlama = $gambarLama;
 
     // Run Function CheckingUpload: 57
-    $gambarbaru = checkingUpload($_FILES['gambarBaru']);
+    $gambarbaru = checkingUpload('gambarBaru');
 
     // functions.php: 69
     if ($gambarbaru === false) {
@@ -135,6 +135,7 @@ function updateProduct($data, $gambarLama){
     	$query = "
     		UPDATE `product` SET 
     			`name` = '$name' , 
+    			`categories` = '$categorie',
     			`desc` = '$desc' , 
     			`price` = '$price' 
     		WHERE `product`.`id` = $id";
@@ -148,6 +149,7 @@ function updateProduct($data, $gambarLama){
     		UPDATE `product` SET 
     			`image` = '$gambarbaru' , 
     			`name` = '$name' , 
+    			`categories` = '$categorie',
     			`desc` = '$desc' , 
     			`price` = '$price' 
     		WHERE `product`.`id` = $id";
