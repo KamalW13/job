@@ -10,8 +10,6 @@ if (isset($_POST['searchButton'])) {
 	$input = $_POST['search'];
 	$categorie = $_POST['categorie'];
 
-	$tes = $_POST['categorie'];
-
 	if ($categorie === 'noSelect') {
 		$data = fetchData("SELECT * FROM product WHERE name LIKE '%$input%'");
 	} else {
@@ -35,9 +33,11 @@ if (isset($_POST['searchButton'])) {
 			<input type="text" name="search" placeholder="search...">
 			<select name="categorie">
 				<option value="noSelect">All Categorie</option>
-				<option value="categorie1">Categories 1</option>
-				<option value="categorie2">Categories 2</option>
-				<option value="categorie3">Categories 3</option>
+
+			<?php foreach($categories as $categorie): ?>
+				<option value="<?= $categorie['categories']; ?>"><?= $categorie['categories']; ?></option>
+			<?php endforeach; ?>
+
 			</select>
 			<button type="submit" name="searchButton">search</button>
 		</form>
